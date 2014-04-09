@@ -10,27 +10,32 @@
 	<script src="script.js"></script>
 </head>
 <body>
-	<div id="page" class="table">
-		<div id="page-row" class="table-row">
-			<div id="tools" class="table-cell">
-				<div id="grid-size" class="tools-group">
-					<input type="text" value="16" name="columns">
-					<label for="columns">Columns</label>
-					<input type="text" value="16" name="rows">
-					<label for="rows">Rows</label>
-					<input type="submit" value="New Grid">
-				</div>
-				<div id="tiles" class="tools-group"></div>
-				<div id="active-tools" class="tools-group">
-					<div id="active-tile"><img></div>
-				</div>
+	<div id="page" >
+
+		<div id="tools">
+			<div id="grid-size" class="tools-group">
+				<input type="text" value="16" name="columns">
+				<label for="columns">Columns</label>
+				<input type="text" value="16" name="rows">
+				<label for="rows">Rows</label>
+				<input type="submit" value="New Grid">
 			</div>
-			<div id="canvas" class="table-cell">
-				<div id="status"></div>
-				<div id="scene" class="table">
+			<div id="tiles" class="tools-group"></div>
+			<div id="active-tools" class="tools-group">
+				<div id="active-tile"><img></div>
+			</div>
+		</div>
+
+		<div id="canvas">
+			<div id="canvas-table" class="table">
+				<div id="canvas-row" class="table-row">
+					<div id="canvas-cell" class="table-cell">
+						<div id="scene"></div>
+					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </body>
 </html>

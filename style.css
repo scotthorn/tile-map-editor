@@ -25,9 +25,35 @@ body,
 }
 #page-row {
     height: 100%;
+    width: 100%;
+}
+#canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 79%;
+    overflow: scroll;
+    padding: 42px;
+    margin-left: 20%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#canvas-table,
+#canvas-row,
+#canvas-cell {
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
 }
 #tools {
+    position: fixed;
     width: 20%;
+    height: 100%;
+    left: 0;
+    top: 0;
     background: rgba(255,255,255,0.8);
     box-shadow: 9px 0px 7px -4px rgba(0,0,0,0.26);
 }
@@ -63,12 +89,12 @@ body,
     display: block;
 }
 #scene {
-    text-align: center;
     margin: auto;
 }
 .grid {
     font-size: 0;
     border-collapse: collapse;
+    margin: auto;
 }
 .grid-cell {
     border: solid thin rgba(255,255,255,0.16);
