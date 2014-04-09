@@ -1,4 +1,4 @@
-var tiles, gridSize, columns, rows, scene;
+var tiles, gridSize, columns, rows, scene, activeTile, activeTileImg;
 
 $(document).ready(function(){
 	// jQuery Needs
@@ -7,19 +7,32 @@ $(document).ready(function(){
 	columns = gridSize.children('[name="columns"]');
 	rows = gridSize.children('[name="rows"]');
 	scene = $('#scene');
+	activeTileImg = $('#active-tile img');
 
 	// Put the tiles in the tools
-	$.each(tileManifest, function(i, tile){
+	$.each(tileNames, function(i, name){
 		var t = document.createElement("div");
 		t.className = 'tile';
+		t.setAttribute('data-tile-name', name);
 		var image = document.createElement("img");
-		image.setAttribute('src', 'tiles/' + tile.image);
+		image.setAttribute('src', 'tiles/' + tileManifest[name].image);
 		t.appendChild(image);
 		tiles.append(t);
 	});
 
+	// Set the default tile
+	useTile(defaultTile);
+
 	// Draw the initial grid
 	drawGrid();
+
+	// Set the tools interface events
+	$('.tile').click(function(){
+		useTile(this.getAttribute('data-tile-name'));
+	});
+	$('#grid-size [type="submit"]').click(function(){
+		drawGrid();
+	});
 });
 
 function drawGrid() {
@@ -47,4 +60,9 @@ function drawGrid() {
 	}
 
 	scene.html(html);
+}
+
+function useTile(name) {
+	activeTile = name;
+	activeTileImg.attr('src', 'tiles/' + tileManifest[name].image);
 }
