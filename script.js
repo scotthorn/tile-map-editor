@@ -74,10 +74,11 @@ function drawGrid() {
 	// Set the grid click event
 	$('.grid-cell').mousedown(function(){
 		painting = true;
+		colorCell($(this));
 	})
 	.mouseover(function(){
 		if (painting) {
-			$(this).children().attr('src', activeTileImg.attr('src'));
+			colorCell($(this));
 		}
 	})
 }
@@ -85,4 +86,7 @@ function drawGrid() {
 function useTile(name) {
 	activeTile = name;
 	activeTileImg.attr('src', 'tiles/' + tileManifest[name].image);
+}
+function colorCell(jqobj) {
+	jqobj.children().attr('src', activeTileImg.attr('src'));
 }
