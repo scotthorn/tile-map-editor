@@ -1,7 +1,9 @@
-var tiles, gridSize, columns, rows, scene, activeTile, activeTileImg;
+var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg;
+var painting = false;
 
 $(document).ready(function(){
 	// jQuery Needs
+	canvas = $('#canvas');
 	tiles = $('#tiles');
 	gridSize = $('#grid-size');
 	columns = gridSize.children('[name="columns"]');
@@ -33,6 +35,14 @@ $(document).ready(function(){
 	$('#grid-size [type="submit"]').click(function(){
 		drawGrid();
 	});
+
+	// Set the painting events
+	canvas.mousedown(function(){
+		painting = true;
+	});
+	$(document).mouseup(function(){
+		painting = false;
+	});
 });
 
 function drawGrid() {
@@ -62,8 +72,13 @@ function drawGrid() {
 	scene.html(html);
 
 	// Set the grid click event
-	$('.grid-cell').click(function(){
-		$(this).children().attr('src', activeTileImg.attr('src'));
+	$('.grid-cell').mousedown(function(){
+		painting = true;
+	})
+	.mouseover(function(){
+		if (painting) {
+			$(this).children().attr('src', activeTileImg.attr('src'));
+		}
 	})
 }
 

@@ -73,6 +73,11 @@ body,
 .grid-cell {
     border: solid thin rgba(255,255,255,0.16);
 }
+.grid-cell img {
+    -webkit-user-drag: none;
+    -moz-user-select: none; 
+    user-drag: none; 
+}
 #active-tools {
     text-align: center;
     font-size: 0;
