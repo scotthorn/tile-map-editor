@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Level Editor</title>
+	<link rel="stylesheet" href="style.css">
+
+	<script src="third/jquery.js"></script>
+	<script src="tile-manifest.js"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+	<div id="page" class="table">
+		<div id="page-row" class="table-row">
+			<div id="tools" class="table-cell">
+				<div id="tiles"></div>
+				<div id="grid-size">
+					<input type="text" value="16" name="columns">
+					<label for="columns">Columns</label>
+					<input type="text" value="16" name="rows">
+					<label for="rows">Rows</label>
+					<input type="submit" value="New Grid">
+				</div>
+			</div>
+			<div id="canvas" class="table-cell">
+				<div id="status"></div>
+				<div id="scene" class="table">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+html,
+body,
+#page {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 14px;
+    height: 100%;
+    width: 100%;
+}
+.table {
+    display: table;
+    vertical-align: middle;
+}
+.table-row {
+    display: table-row;
+    vertical-align: middle;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+#page {
+    background: rgba(0,0,0,0.56);
+}
+#page-row {
+    height: 100%;
+}
+#tools {
+    width: 20%;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 9px 0px 7px -4px rgba(0,0,0,0.26);
+}
+#tiles {
+    margin-bottom: 42px;
+    width: 92px;
+    margin: 0 auto 42px;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1);
+    padding: 12px;
+}
+.tile { 
+    display: inline-block;
+    font-size: 0;
+    padding: 3px 6px;
+}
+.tile img {
+    border: solid 1px #111;
+}
+#grid-size {
+    width: 92px;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 1);
+    margin: auto;
+    padding: 12px;
+}
+#grid-size input[type="text"] {
+    width: 2em;
+    text-align: center;
+    display: block;
+    float: left;
+    clear: both;
+}
+#grid-size input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+}
+#grid-size label {
+    margin: 2px 0 0 2.3em;
+    display: block;
+}
+#scene {
+    text-align: center;
+    margin: auto;
+}
+.grid {
+    font-size: 0;
+    border-collapse: collapse;
+}
+.grid-cell {
+    border: solid thin rgba(255,255,255,0.16);
+}
