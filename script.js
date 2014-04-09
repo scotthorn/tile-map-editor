@@ -60,6 +60,11 @@ function drawGrid() {
 	}
 
 	scene.html(html);
+
+	// Set the grid click event
+	$('.grid-cell').click(function(){
+		$(this).children().attr('src', activeTileImg.attr('src'));
+	})
 }
 
 function useTile(name) {
