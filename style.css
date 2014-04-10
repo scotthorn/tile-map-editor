@@ -4,6 +4,8 @@
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;  
+    margin: 0;
+    padding: 0;
 }
 html,
 body,
@@ -41,9 +43,9 @@ body,
     right: 0;
     left: 0;
     height: 100%;
-    width: 79%;
+    width: 80%;
     overflow: scroll;
-    padding: 42px;
+    padding: 42px 0;
     margin-left: 20%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -93,11 +95,11 @@ body,
     margin-top: 6px;
 }
 #grid-size label {
-    margin: 2px 0 0 2.3em;
+    margin: 0 0 4px 2.3em;
     display: block;
 }
 #scene {
-    margin: auto;
+    margin: auto 81px;
 }
 .grid {
     font-size: 0;
@@ -112,6 +114,9 @@ body,
     -moz-user-select: none; 
     user-drag: none; 
 }
+.grid img {
+    
+}
 #active-tools {
     text-align: center;
     font-size: 0;
@@ -120,4 +125,23 @@ body,
     width: 80%;
     margin: 10%;
     border: solid thin #eee;
+}
+#zoom {
+    text-align: center;
+}
+#zoom-text {
+    width: 3em;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+#file button {
+    display: block;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 8px 2px;
+}
+#new-grid {
+    margin-bottom: 9px;
 }

@@ -26,14 +26,36 @@ $(document).ready(function(){
 	useTile(defaultTile);
 
 	// Draw the initial grid
-	drawGrid();
+	drawGrid(16, 16);
 
 	// Set the tools interface events
 	$('.tile').click(function(){
 		useTile(this.getAttribute('data-tile-name'));
 	});
-	$('#grid-size [type="submit"]').click(function(){
-		drawGrid();
+	$('#new-grid').click(function(){
+		vex.dialog.open({
+			message: 'New Grid (current will be lost)',
+			input: "<input type=\"text\" value=\"16\" name=\"columns\"><label for=\"columns\">Columns</label><input type=\"text\" value=\"16\" name=\"rows\"><label for=\"rows\">Rows</label>",
+			buttons: [
+				$.extend({}, vex.dialog.buttons.YES, {
+					text: 'Create New Grid'
+				}), $.extend({}, vex.dialog.buttons.NO, {
+					text: 'Cancel'
+				})
+			],
+			callback: function(data) {
+				if (data === false) {
+					return console.log('Cancelled');
+				}
+				else {
+					drawGrid(data.columns, data.rows);
+				}
+			}
+		});
+	});
+	$('#zoom-text').change(function(){
+		var val = $('#zoom-text').val();
+		$('#js-style').html('.grid img { width: ' + val + 'px; height: ' + val + 'px; }')
 	});
 
 	// Set the painting events
@@ -45,12 +67,10 @@ $(document).ready(function(){
 	});
 });
 
-function drawGrid() {
+function drawGrid(numColumns, numRows) {
 	scene.html('');
 	var html = document.createElement("div");
 	html.className = 'grid table';
-	var numColumns = columns.val();
-	var numRows = rows.val();
 
 	for (var i = 0; i < numColumns; i++) {
 		var row = document.createElement("div");

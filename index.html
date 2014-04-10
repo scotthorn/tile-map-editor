@@ -4,8 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Level Editor</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="third/vex/vex.css" />
+	<link rel="stylesheet" href="third/vex/vex-theme-plain.css" />
 
 	<script src="third/jquery.js"></script>
+	<script src="third/FileSaver.js"></script>
+	<script src="third/vex/vex.combined.min.js"></script>
+	<script>vex.defaultOptions.className = 'vex-theme-plain';</script>
+
 	<script src="tile-manifest.js"></script>
 	<script src="script.js"></script>
 </head>
@@ -13,16 +19,17 @@
 	<div id="page" >
 
 		<div id="tools">
-			<div id="grid-size" class="tools-group">
-				<input type="text" value="16" name="columns">
-				<label for="columns">Columns</label>
-				<input type="text" value="16" name="rows">
-				<label for="rows">Rows</label>
-				<input type="submit" value="New Grid">
+			<div id="file" class="tools-group">
+				<button id="new-grid">New Grid</button>
+				<button id="save">Save</button>
 			</div>
 			<div id="tiles" class="tools-group"></div>
 			<div id="active-tools" class="tools-group">
 				<div id="active-tile"><img></div>
+			</div>
+			<div id="zoom" class="tools-group">
+				<label for="zoom-text">Zoom</label>
+				<input type="text" id="zoom-text" value="32">
 			</div>
 		</div>
 
@@ -37,5 +44,6 @@
 		</div>
 
 	</div>
+	<style type="text/css" id="js-style"></style>
 </body>
 </html>
