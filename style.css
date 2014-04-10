@@ -43,10 +43,10 @@ body,
     right: 0;
     left: 0;
     height: 100%;
-    width: 80%;
+    width: 100%;
     overflow: scroll;
-    padding: 42px 0;
-    margin-left: 20%;
+    padding: 42px 0 42px 197px;
+    margin-left: 0%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     cursor: default;
@@ -60,12 +60,13 @@ body,
 }
 #tools {
     position: fixed;
-    width: 20%;
+    width: 197px;
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(255,255,255,0.8);
+    background: #ddd;
     box-shadow: 9px 0px 7px -4px rgba(0,0,0,0.26);
+    z-index: 10;
 }
 .tools-group {
     margin: 42px auto;
@@ -130,10 +131,10 @@ body,
     text-align: center;
 }
 #zoom-text {
-    width: 3em;
-    text-align: center;
+    width: 3.6em;
     display: block;
     margin: auto;
+    padding: 2px 0 2px 3px
 }
 #file button {
     display: block;

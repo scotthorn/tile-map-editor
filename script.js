@@ -1,4 +1,4 @@
-var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg;
+var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg, zoomText;
 var painting = false;
 
 $(document).ready(function(){
@@ -10,6 +10,7 @@ $(document).ready(function(){
 	rows = gridSize.children('[name="rows"]');
 	scene = $('#scene');
 	activeTileImg = $('#active-tile img');
+	zoomText = $('#zoom-text');
 
 	// Put the tiles in the tools
 	$.each(tileNames, function(i, name){
@@ -53,8 +54,8 @@ $(document).ready(function(){
 			}
 		});
 	});
-	$('#zoom-text').change(function(){
-		var val = $('#zoom-text').val();
+	zoomText.change(function(){
+		var val = zoomText.val();
 		$('#js-style').html('.grid img { width: ' + val + 'px; height: ' + val + 'px; }')
 	});
 
