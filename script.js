@@ -1,4 +1,4 @@
-var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg, zoomText;
+var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg, zoomText, borders;
 var painting = false;
 
 $(document).ready(function(){
@@ -11,6 +11,7 @@ $(document).ready(function(){
 	scene = $('#scene');
 	activeTileImg = $('#active-tile img');
 	zoomText = $('#zoom-text');
+	borders = $('input[name="borders"]');
 
 	// Put the tiles in the tools
 	$.each(tileNames, function(i, name){
@@ -54,9 +55,20 @@ $(document).ready(function(){
 			}
 		});
 	});
+	borders.click(function(){
+		if (borders.is(':checked')) {
+			canvas.removeClass('no-borders');
+		}
+		else {
+			canvas.addClass('no-borders');
+		}
+	});
 	zoomText.change(function(){
 		var val = zoomText.val();
 		$('#js-style').html('.grid img { width: ' + val + 'px; height: ' + val + 'px; }')
+	});
+	$('#save').click(function(){
+		savePrompt();
 	});
 
 	// Set the painting events
@@ -110,4 +122,26 @@ function useTile(name) {
 }
 function colorCell(jqobj) {
 	jqobj.children().attr('src', activeTileImg.attr('src'));
+}
+
+function savePrompt() {
+	vex.dialog.open({
+		message: 'HTML Output',
+		input: '<textarea>' + scene.html() + '</textarea>',
+		buttons: [
+			/*$.extend({}, vex.dialog.buttons.YES, {
+				text: 'Create New Grid'
+			}), */$.extend({}, vex.dialog.buttons.NO, {
+				text: 'File Saving Coming Soon'
+			})
+		],
+		callback: function(data) {
+			if (data === false) {
+				return console.log('Cancelled');
+			}
+			else {
+				drawGrid(data.columns, data.rows);
+			}
+		}
+	});
 }

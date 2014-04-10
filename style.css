@@ -110,6 +110,12 @@ body,
 .grid-cell {
     border: solid thin rgba(255,255,255,0.16);
 }
+.no-borders .grid-cell {
+    border: none;
+}
+.no-borders .grid {
+    border: solid thin rgba(255,255,255,0.16);
+}
 .grid-cell img {
     -webkit-user-drag: none;
     -moz-user-select: none; 
@@ -127,7 +133,7 @@ body,
     margin: 10%;
     border: solid thin #eee;
 }
-#zoom {
+#display-options {
     text-align: center;
 }
 #zoom-text {
@@ -135,6 +141,9 @@ body,
     display: block;
     margin: auto;
     padding: 2px 0 2px 3px
+}
+input[name="borders"] {
+    margin-top: 12px;
 }
 #file button {
     display: block;
