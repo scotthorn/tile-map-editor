@@ -6,8 +6,8 @@ $(document).ready(function(){
 	canvas = $('#canvas');
 	tiles = $('#tiles');
 	gridSize = $('#grid-size');
-	columns = gridSize.children('[name="columns"]');
-	rows = gridSize.children('[name="rows"]');
+	columns = 16;
+	rows = 16;
 	scene = $('#scene');
 	activeTileImg = $('#active-tile img');
 	zoomText = $('#zoom-text');
@@ -28,7 +28,7 @@ $(document).ready(function(){
 	useTile(defaultTile);
 
 	// Draw the initial grid
-	drawGrid(16, 16);
+	drawGrid(columns, rows);
 
 	// Set the tools interface events
 	$('.tile').click(function(){
@@ -81,6 +81,9 @@ $(document).ready(function(){
 });
 
 function drawGrid(numColumns, numRows) {
+	columns = numColumns;
+	rows = numRows;
+
 	scene.html('');
 	var html = document.createElement("div");
 	html.className = 'grid table';
@@ -121,18 +124,34 @@ function useTile(name) {
 	activeTileImg.attr('src', 'tiles/' + tileManifest[name].image);
 }
 function colorCell(jqobj) {
-	jqobj.children().attr('src', activeTileImg.attr('src'));
+	jqobj.children().attr('src', activeTileImg.attr('src')).attr('data-tile-name', activeTile);
 }
 
 function savePrompt() {
+	var state = new Object();
+	state['rows'] = rows;
+	state['columns'] = columns;
+	state.grid = new Array();
+
+	for (var i = 0; i < columns; i++) {
+		state.grid[i] = new Array();
+
+		for (var j = 0; j < rows; j++) {
+			state.grid[i][j] = $('#gc-' + i + '-' + j + ' img').attr('data-tile-name');
+		}
+	}
+
+	var jsonOutput = JSON.stringify(state);
+
 	vex.dialog.open({
-		message: 'HTML Output',
-		input: '<textarea>' + scene.html() + '</textarea>',
+		message: 'Save Tile Map',
+		input: '<input name="filename" value="tilemap.json"><label for="filename">File Name</label><textarea id="save-data" rows=5 onclick="this.focus();this.select()" style="display: none;">' + jsonOutput + '</textarea><div id="toggle-save-data">Show/Hide Data</div>',
+		tileNames: tileNames,
 		buttons: [
-			/*$.extend({}, vex.dialog.buttons.YES, {
-				text: 'Create New Grid'
-			}), */$.extend({}, vex.dialog.buttons.NO, {
-				text: 'File Saving Coming Soon'
+			$.extend({}, vex.dialog.buttons.YES, {
+				text: 'Save File'
+			}), $.extend({}, vex.dialog.buttons.NO, {
+				text: 'Close'
 			})
 		],
 		callback: function(data) {
@@ -140,8 +159,12 @@ function savePrompt() {
 				return console.log('Cancelled');
 			}
 			else {
-				drawGrid(data.columns, data.rows);
+				var blob = new Blob([jsonOutput], {type: "application/json;charset=utf-8"});
+				saveAs(blob, data.filename);
 			}
 		}
+	});
+	$('#toggle-save-data').click(function(){
+		$('#save-data').toggle();
 	});
 }

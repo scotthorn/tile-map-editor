@@ -155,3 +155,27 @@ input[name="borders"] {
 #new-grid {
     margin-bottom: 9px;
 }
+#toggle-save-data {
+    position: absolute;
+    bottom: 7px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #3288e6;
+}
+input[name="filename"] {
+    display: block;
+    padding: 7px 3px;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 17px;
+    border: solid 1px #ccc;
+}
+label[for="filename"] {
+    font-size: 13px;
+    color: #999;
+    margin-left: 4px;
+}
+#save-data {
+    border: solid 1px #ccc;
+    margin-top: 16px;
+}
