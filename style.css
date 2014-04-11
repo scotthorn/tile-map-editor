@@ -106,15 +106,14 @@ body,
     font-size: 0;
     border-collapse: collapse;
     margin: auto;
+    border: solid 2px rgba(255,255,255,0.16);
 }
 .grid-cell {
-    border: solid thin rgba(255,255,255,0.16);
+    outline: solid thin #999;
+    
 }
 .no-borders .grid-cell {
-    border: none;
-}
-.no-borders .grid {
-    border: solid thin rgba(255,255,255,0.16);
+    outline: none;
 }
 .grid-cell img {
     -webkit-user-drag: none;
