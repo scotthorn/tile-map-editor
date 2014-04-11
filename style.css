@@ -151,9 +151,10 @@ input[name="borders"] {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 8px 2px;
+    margin-top: 9px
 }
-#new-grid {
-    margin-bottom: 9px;
+#file #new-grid {
+    margin-top: 0;
 }
 #toggle-save-data {
     position: absolute;
@@ -178,4 +179,10 @@ label[for="filename"] {
 #save-data {
     border: solid 1px #ccc;
     margin-top: 16px;
+}
+label[for="load-file"] {
+    font-size: 13px;
+    color: #999;
+    margin-left: 4px;
+    display: block;
 }

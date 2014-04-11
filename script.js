@@ -1,4 +1,4 @@
-var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg, zoomText, borders;
+var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg, zoomText, borders, loadedFile;
 var painting = false;
 
 $(document).ready(function(){
@@ -55,6 +55,28 @@ $(document).ready(function(){
 			}
 		});
 	});
+	$('#load').click(function(){
+		vex.dialog.open({
+			message: 'Load a JSON File',
+			input: "<input type=\"file\" name=\"load-file\" id=\"load-file\" required><label for=\"load-file\">JSON File</label>",
+			buttons: [
+				$.extend({}, vex.dialog.buttons.YES, {
+					text: 'Load'
+				}), $.extend({}, vex.dialog.buttons.NO, {
+					text: 'Cancel'
+				})
+			],
+			callback: function(data) {
+				if (data === false) {
+					return console.log('Cancelled');
+				}
+				else {
+					loadMap(loadedFile);
+				}
+			}
+		});
+		document.getElementById('load-file').addEventListener('change', readSingleFile, false);
+	});
 	borders.click(function(){
 		if (borders.is(':checked')) {
 			canvas.removeClass('no-borders');
@@ -98,6 +120,7 @@ function drawGrid(numColumns, numRows) {
 			cell.id = 'gc-' + i + '-' + j;
 			var image = document.createElement('img');
 			image.setAttribute('src', 'tiles/transparent.png');
+			image.setAttribute('data-tile-name', 'transparent');
 			cell.appendChild(image);
 			row.appendChild(cell);
 		}
@@ -167,4 +190,49 @@ function savePrompt() {
 	$('#toggle-save-data').click(function(){
 		$('#save-data').toggle();
 	});
+}
+
+function readSingleFile(e) {
+	//Retrieve the first (and only!) File from the FileList object
+	var f = e.target.files[0]; 
+
+	if (f) {
+		var r = new FileReader();
+		r.onload = function(e) { 
+			var content = e.target.result;
+			try {
+				loadedFile = JSON.parse(content);
+			}
+			catch(e) {
+				alert('That file ain\'t JSON, yo.');
+				clearFileInput($('#load-file'));
+			}
+
+		}
+		r.readAsText(f);
+	} 
+	else { 
+		alert("Failed to load file");
+	}
+}
+
+function clearFileInput(ctrl) {
+  try {
+    ctrl.val(null);
+  } catch(ex) { }
+  if (ctrl.value) {
+    ctrl.parentNode.replaceChild(ctrl.cloneNode(true), ctrl);
+  }
+}
+
+function loadMap(data) {
+	drawGrid(data.columns, data.rows);
+	var grid = data.grid;
+
+	for (var i = 0; i < data.columns; i++) {
+
+		for (var j = 0; j < data.rows; j++) {
+			$('#gc-' + i + '-' + j + ' img').attr('src', 'tiles/' + tileManifest[grid[i][j]].image).attr('data-tile-name', grid[i][j]);
+		}
+	}
 }
