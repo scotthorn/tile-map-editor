@@ -1,10 +1,10 @@
-var defaultTile = 'violet';
+var defaultTile = 'grass';
 var tileNames = new Array(
   'transparent',
-  'beige',
-  'black',
+  'bush',
+  'grass',
   'cherry',
-  'violet'
+  'steppingStone'
 );
 var tileManifest = {
 	transparent: {
@@ -12,12 +12,12 @@ var tileManifest = {
 		label: 'Transparent',
 		image: 'transparent.png'
 	},
-	beige: {
+	bush: {
 		name: 'bush',
 		label: 'Bush',
 		image: 'bush.png'
 	},
-	black: {
+	grass: {
 		name: 'grass',
 		label: 'Grass',
 		image: 'grass.png'
@@ -27,8 +27,8 @@ var tileManifest = {
 		label: 'Puddle',
 		image: 'puddle.png'
 	},
-	violet: {
-		name: 'stepping-stone',
+	steppingStone: {
+		name: 'steppingStone',
 		label: 'Stepping Stone',
 		image: 'stepping-stone.png'
 	}
