@@ -81,6 +81,8 @@ body,
 }
 .tile img {
     border: solid 1px #111;
+    width: 32px;
+    height: auto;
 }
 #grid-size input[type="text"] {
     width: 2em;

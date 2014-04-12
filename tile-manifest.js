@@ -13,23 +13,23 @@ var tileManifest = {
 		image: 'transparent.png'
 	},
 	beige: {
-		name: 'beige',
-		label: 'Beige',
-		image: 'beige.png'
+		name: 'bush',
+		label: 'Bush',
+		image: 'bush.png'
 	},
 	black: {
-		name: 'black',
-		label: 'Black',
-		image: 'black.png'
+		name: 'grass',
+		label: 'Grass',
+		image: 'grass.png'
 	},
 	cherry: {
-		name: 'cherry',
-		label: 'Cherry',
-		image: 'cherry.png'
+		name: 'puddle',
+		label: 'Puddle',
+		image: 'puddle.png'
 	},
 	violet: {
-		name: 'violet',
-		label: 'Violet',
-		image: 'violet.png'
+		name: 'stepping-stone',
+		label: 'Stepping Stone',
+		image: 'stepping-stone.png'
 	}
 };
