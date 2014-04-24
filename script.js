@@ -1,13 +1,15 @@
-var canvas, tiles, gridSize, columns, rows, scene, activeTile, activeTileImg, zoomText, borders, loadedFile;
+var canvas, tiles, gridSize, scene, activeTile, activeTileImg, zoomText, borders, loadedFile;
 var painting = false;
+/* Default interface values */
+var columns = 16;
+var rows = 16;
+var tile_pixels = 32;
 
 $(document).ready(function(){
 	// jQuery Needs
 	canvas = $('#canvas');
 	tiles = $('#tiles');
 	gridSize = $('#grid-size');
-	columns = 16;
-	rows = 16;
 	scene = $('#scene');
 	activeTileImg = $('#active-tile img');
 	zoomText = $('#zoom-text');
@@ -17,6 +19,7 @@ $(document).ready(function(){
 	$.each(tileNames, function(i, name){
 		var t = document.createElement("div");
 		t.className = 'tile';
+		t.setAttribute('data-tile-name', name);
 		t.setAttribute('data-tile-name', name);
 		var image = document.createElement("img");
 		image.setAttribute('src', 'tiles/' + tileManifest[name].image);
@@ -34,6 +37,7 @@ $(document).ready(function(){
 	$('.tile').click(function(){
 		useTile(this.getAttribute('data-tile-name'));
 	});
+
 	$('#new-grid').click(function(){
 		vex.dialog.open({
 			message: 'New Grid (current will be lost)',
@@ -55,6 +59,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+
 	$('#load').click(function(){
 		vex.dialog.open({
 			message: 'Load a JSON File',
@@ -77,6 +82,7 @@ $(document).ready(function(){
 		});
 		document.getElementById('load-file').addEventListener('change', readSingleFile, false);
 	});
+
 	borders.click(function(){
 		if (borders.is(':checked')) {
 			canvas.removeClass('no-borders');
@@ -85,10 +91,14 @@ $(document).ready(function(){
 			canvas.addClass('no-borders');
 		}
 	});
+
 	zoomText.change(function(){
 		var val = zoomText.val();
-		$('#js-style').html('.grid img { width: ' + val + 'px; height: ' + val + 'px; }')
+		$('#js-style').html('.grid-cell, .grid img { width: ' + val + 'px; height: ' + val + 'px; }')
 	});
+	// Set the zoomText default value
+	zoomText.val(tile_pixels).change();
+
 	$('#save').click(function(){
 		savePrompt();
 	});
